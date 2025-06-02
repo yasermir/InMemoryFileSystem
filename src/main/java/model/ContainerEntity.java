@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +24,4 @@ public abstract class ContainerEntity extends FileSystemEntity {
         return children.get(name);
     }
 
-    public Collection<FileSystemEntity> getChildren() {
-        return children.values();
-    }
 }

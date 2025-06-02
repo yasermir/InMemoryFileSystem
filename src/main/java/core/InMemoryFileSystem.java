@@ -8,13 +8,18 @@ import model.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static model.EntityType.*;
 
 public class InMemoryFileSystem {
     private Map<String, Drive> driveMap = new HashMap<>();
 
+    /**+
+     *
+     * @param entityType - can be any of four types DRIVE, FOLDER, TEXT_FILE, ZIP_FILE
+     * @param name - user entered custom name
+     * @param parentPath - will be null for drive, for other entities will be container entity
+     */
     public void create(String entityType, String name,String parentPath){
 
         if(entityType.equals(EntityType.DRIVE)) {
@@ -46,6 +51,10 @@ public class InMemoryFileSystem {
 
     }
 
+    /**+
+     *
+     * @param path - path of file entity to be deleted
+     */
     public void delete(String path) {
         FileSystemEntity entity = resolvePath(path);
         if (entity instanceof Drive) {
@@ -56,6 +65,11 @@ public class InMemoryFileSystem {
         }
     }
 
+    /**
+     *
+     * @param path - path to text file
+     * @param content - actual text to be written to file
+     */
     public void writeToFile(String path, String content) {
         var entity = resolvePath(path);
         if (!(entity instanceof TextFile)) {
@@ -64,6 +78,11 @@ public class InMemoryFileSystem {
          ((TextFile) entity).setContent(content);
     }
 
+    /**
+     *
+     * @param sourcePath - path of entity which needs to be moved
+     * @param destPath - destination path where source entity will be copied
+     */
     public void move(String sourcePath, String destPath) {
         FileSystemEntity sourceEntity = resolvePath(sourcePath);
         if (sourceEntity.getType().equals(EntityType.DRIVE)) {
@@ -85,6 +104,11 @@ public class InMemoryFileSystem {
         destination.addChild(sourceEntity);
     }
 
+    /**+
+     *
+     * @param path - full path that will be used to drive current entity in context
+     * @return - entity in context from full path
+     */
     public FileSystemEntity resolvePath(String path) {
         String[] parts = path.split("\\\\");
         if (parts.length == 0) throw new IllegalArgumentException("Invalid path.");
