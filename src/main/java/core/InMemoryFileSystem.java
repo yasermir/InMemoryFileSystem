@@ -85,7 +85,7 @@ public class InMemoryFileSystem {
         destination.addChild(sourceEntity);
     }
 
-    private FileSystemEntity resolvePath(String path) {
+    public FileSystemEntity resolvePath(String path) {
         String[] parts = path.split("\\\\");
         if (parts.length == 0) throw new IllegalArgumentException("Invalid path.");
 
