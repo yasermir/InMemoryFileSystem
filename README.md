@@ -32,7 +32,8 @@ Exceptions: Path not found; Not a text file.
 
 CLASS DIAGRAM
 
-![image](https://github.com/user-attachments/assets/7ad1b858-0e9f-47d6-a5dc-34358405d777)
+![image](https://github.com/user-attachments/assets/89021f97-fb12-492a-89a8-d3a716abfff9)
+
 
 CORE ENTITIES
 1. FileSystemEntity (Abstract Base Class)
